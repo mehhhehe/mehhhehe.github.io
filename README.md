@@ -2,9 +2,9 @@
 
 Personal portfolio site for GitHub Pages.
 
-This is a small static site: HTML, CSS, and vanilla JavaScript. The main profile content lives in `assets/data.js`; paper notes live in `assets/papers.js` and `posts/`.
+This is a small static site, consisting of HTML, CSS, and vanilla JavaScript. The main profile content lives in `assets/data.js`, while paper notes live in `assets/papers.js` and `posts/`.
 
-## Local Preview
+<!-- ## Local Preview
 
 Run a local server from this folder:
 
@@ -52,4 +52,4 @@ Private projects can stay listed without exposing their repositories by leaving 
   link: "",
   status: "private repo"
 }
-```
+``` -->
