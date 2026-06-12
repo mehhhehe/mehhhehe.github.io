@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid-like Representations in Artificial Agents — Notes · Mehreen Mansoor</title>
+<meta name="description" content="Train a network to self-localize and grid cells appear on their own, the same code the brain uses to navigate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-base="../">
+<canvas id="neural"></canvas>
+
+<nav><div class="wrap nav-inner">
+  <a class="nav-logo" href="../index.html"><span class="tilde">~/</span>mehreen</a>
+  <div class="nav-links">
+    <a href="../index.html">home</a>
+    <a href="../work.html">work</a>
+    <a href="../papers.html" class="active">notes</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</div></nav>
+
+<article class="article">
+  <a class="back" href="../papers.html">back to notes</a>
+  <div class="art-head">
+    <div class="top"><span class="tag dl">DL</span><span class="readtime">6 min read</span></div>
+    <h1>Vector-based Navigation using Grid-like Representations in Artificial Agents</h1>
+  </div>
+
+  <div class="paper-meta">
+    <div class="row"><span class="k">authors</span><span class="v">Andrea Banino et al. (DeepMind)</span></div>
+    <div class="row"><span class="k">venue</span><span class="v">Nature 557, 429–433 (2018)</span></div>
+    <div class="row"><span class="k">paper</span><span class="v"><a href="https://doi.org/10.1038/s41586-018-0102-6" target="_blank" rel="noopener">doi:10.1038/s41586-018-0102-6 →</a></span></div>
+  </div>
+
+  <div class="prose">
+    <p>This is the paper that convinced me brains and neural networks, given the same problem, can independently arrive at the same solution. It's also the bridge between the two halves of these notes: the architectures I build with, and the brains they keep echoing.</p>
+
+    <h2>A detour through the brain</h2>
+    <p>In the mammalian entorhinal cortex there are <strong>grid cells</strong>: neurons that fire whenever an animal is at any vertex of a regular triangular grid tiling the floor of a room. Different cells use grids of different spacing and offset. Together they form a periodic coordinate system for space, the brain's built-in metric for "where am I, and how do I get from here to there?" The discovery won a Nobel Prize. The open question was <em>why</em> this particular code, and whether it was a quirk of biology or something deeper.</p>
+
+    <h2>The experiment</h2>
+    <p>The DeepMind team trained a recurrent network on a simple task: <strong>path integration</strong>. Given a stream of self-motion signals, which way am I moving, how fast, keep track of your position. No grids were designed in, no biology was hard-coded. They simply asked the network to know where it was from its own movement.</p>
+    <p>When they looked inside the trained network, units had spontaneously developed grid-like firing patterns, the same hexagonal, multi-scale structure as biological grid cells, alongside other entorhinal-like responses. The code the brain uses for space had <em>emerged</em> from the objective, not been imposed.</p>
+
+    <p class="pull">Nobody put grid cells in. The task put them there.</p>
+
+    <p>And it wasn't just an internal pattern. When this grid-equipped network was dropped into a reinforcement-learning agent navigating unfamiliar environments, it could do <em>vector-based navigation</em>, take shortcuts, head straight toward goals, and it outperformed agents without that representation, even besting expert human players in their setups. The emergent structure was functionally useful, consistent with what the neuroscience theory predicted.</p>
+
+    <h2>What it changed for me</h2>
+    <p>It changed what "learned representations" means to me. We often treat a network's internal features as an inscrutable means to an end. This says: sometimes the optimal internal representation for a task is a real, nameable thing, one evolution already found. That's a strong hint that some representations are <em>natural solutions</em> to problems, not arbitrary artifacts of training. It makes me more curious about what's inside my models, and more inclined to think interpretability can find real structure rather than just noise.</p>
+  </div>
+
+  <div class="takeaways">
+    <h3>What I took away</h3>
+    <ul>
+      <li>Grid cells are the brain's periodic metric for space, a Nobel-winning discovery.</li>
+      <li>Training a network purely to path-integrate made grid-like units emerge, unprompted.</li>
+      <li>Those representations weren't cosmetic: they enabled shortcut-taking and goal-directed navigation.</li>
+      <li>Some learned representations are natural solutions to a task: convergence between minds and models.</li>
+    </ul>
+  </div>
+
+  <div class="post-nav">
+    <a href="lora-low-rank-adaptation.html"><span class="lbl">previous note</span>LoRA: Low-Rank Adaptation of Large Language Models</a>
+    <a href="transformers-hippocampal-formation.html"><span class="lbl">next note</span>Relating Transformers to the Hippocampal Formation</a>
+  </div>
+</article>
+
+<footer><div class="wrap">
+  <div class="statusbar">
+    <div class="left"><span id="foot-name"></span><span id="foot-loc"></span></div>
+    <span>note · <a href="../papers.html">all notes</a></span>
+  </div>
+</div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/papers.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

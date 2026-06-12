@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language Models Are Few-Shot Learners — Notes · Mehreen Mansoor</title>
+<meta name="description" content="GPT-3: scale a language model far enough and it learns new tasks from a handful of examples in the prompt, no gradient updates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-base="../">
+<canvas id="neural"></canvas>
+
+<nav><div class="wrap nav-inner">
+  <a class="nav-logo" href="../index.html"><span class="tilde">~/</span>mehreen</a>
+  <div class="nav-links">
+    <a href="../index.html">home</a>
+    <a href="../work.html">work</a>
+    <a href="../papers.html" class="active">notes</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</div></nav>
+
+<article class="article">
+  <a class="back" href="../papers.html">back to notes</a>
+  <div class="art-head">
+    <div class="top"><span class="tag ml">ML</span><span class="readtime">7 min read</span></div>
+    <h1>Language Models Are Few-Shot Learners</h1>
+  </div>
+
+  <div class="paper-meta">
+    <div class="row"><span class="k">authors</span><span class="v">Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, et al. (OpenAI)</span></div>
+    <div class="row"><span class="k">venue</span><span class="v">NeurIPS 2020</span></div>
+    <div class="row"><span class="k">paper</span><span class="v"><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">arXiv:2005.14165 →</a></span></div>
+  </div>
+
+  <div class="prose">
+    <p>This is the GPT-3 paper, and it's the one that changed what "training" means to me. Up to this point, teaching a model a new task meant collecting a labelled dataset and running gradient descent on it. This paper showed a model doing something different: learning a task from a few examples typed into the prompt, with its weights frozen, mid-sentence.</p>
+
+    <h2>The setup</h2>
+    <p>The authors scaled an autoregressive transformer to 175 billion parameters, over a hundred times bigger than its predecessor, and trained it on the straightforward objective of predicting the next token across a large slice of the internet. Nothing exotic in the recipe. The whole bet was on scale: more parameters, more data, more compute, same idea.</p>
+    <p>Then they evaluated it differently. Instead of fine-tuning on each task, they gave it <strong>in-context examples</strong>: a few demonstrations of input to output in the prompt, followed by a new input. Translation, question answering, arithmetic, unscrambling words, all framed as "here are a few examples, now you continue." No weight updates. The model infers the pattern and applies it.</p>
+
+    <p class="pull">Few-shot learning stopped being a training procedure and became something the model does at inference time.</p>
+
+    <h2>Why it mattered, and the honesty I respect</h2>
+    <p>The headline is emergence: this in-context ability isn't really present in small models and gets stronger as scale grows. A capability nobody explicitly trained for showed up as a side effect of size. That's the observation that oriented the field around scaling, and it's also what makes me cautious, because "it emerges if you make it bigger" is hard to reason about or control.</p>
+    <p>What I appreciate is that the paper doesn't oversell. It documents where GPT-3 is weak: arithmetic with more digits, tasks needing real multi-step reasoning, places where it's fluent but wrong. Holding those two things together, a real result and a clear list of failures, is the kind of scientific honesty I want to follow.</p>
+
+    <h2>What it changed for me</h2>
+    <p>Practically, it changed how I approach a new problem. The first question is no longer always "what dataset do I need to fine-tune on?" Sometimes it's "can I just <em>describe</em> the task well enough in the prompt?" That's a different, faster loop. The deeper shift is conceptual: scale can be a research direction, not just an engineering detail. Past some threshold, quantity produces new capability, and figuring out which abilities sit just past the next threshold is now one of the more relevant questions in the field.</p>
+  </div>
+
+  <div class="takeaways">
+    <h3>What I took away</h3>
+    <ul>
+      <li>A 175B-parameter next-token predictor learns tasks from a few in-prompt examples, weights frozen.</li>
+      <li>This in-context ability is weak in small models and emerges with scale.</li>
+      <li>The paper is candid about failures (multi-digit arithmetic, real reasoning), which makes it more trustworthy.</li>
+      <li>"How much data to fine-tune on?" is now sometimes "can I just describe the task?"</li>
+    </ul>
+  </div>
+
+  <div class="post-nav">
+    <a href="an-image-is-worth-16x16-words.html"><span class="lbl">previous note</span>An Image Is Worth 16×16 Words</a>
+    <a href="lora-low-rank-adaptation.html"><span class="lbl">next note</span>LoRA: Low-Rank Adaptation of Large Language Models</a>
+  </div>
+</article>
+
+<footer><div class="wrap">
+  <div class="statusbar">
+    <div class="left"><span id="foot-name"></span><span id="foot-loc"></span></div>
+    <span>note · <a href="../papers.html">all notes</a></span>
+  </div>
+</div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/papers.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

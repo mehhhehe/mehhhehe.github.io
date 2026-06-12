@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attention Is All You Need — Notes · Mehreen Mansoor</title>
+<meta name="description" content="Why self-attention replaced recurrence, and why nearly everything I build traces back to it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-base="../">
+<canvas id="neural"></canvas>
+
+<nav><div class="wrap nav-inner">
+  <a class="nav-logo" href="../index.html"><span class="tilde">~/</span>mehreen</a>
+  <div class="nav-links">
+    <a href="../index.html">home</a>
+    <a href="../work.html">work</a>
+    <a href="../papers.html" class="active">notes</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</div></nav>
+
+<article class="article">
+  <a class="back" href="../papers.html">back to notes</a>
+  <div class="art-head">
+    <div class="top"><span class="tag dl">DL</span><span class="readtime">6 min read</span></div>
+    <h1>Attention Is All You Need</h1>
+  </div>
+
+  <div class="paper-meta">
+    <div class="row"><span class="k">authors</span><span class="v">Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, Polosukhin</span></div>
+    <div class="row"><span class="k">venue</span><span class="v">NeurIPS 2017</span></div>
+    <div class="row"><span class="k">paper</span><span class="v"><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">arXiv:1706.03762 →</a></span></div>
+  </div>
+
+  <div class="prose">
+    <p>If I had to point at a single paper sitting underneath most of what I work with today, it would be this one. It is short, and its title states its claim plainly: take the scaffolding everyone assumed you needed for sequence modelling, throw it out, and keep only attention.</p>
+
+    <h2>The thing it removed</h2>
+    <p>Before this, sequence models relied on recurrence. You read a sentence one token at a time, carrying a hidden state forward, hoping the start of the sentence still registered by the end. It worked, but it was inherently serial: token <code>t</code> had to wait for token <code>t-1</code>, and long-range dependencies got faint as they travelled down the chain. Convolutions helped, but they reached far only by stacking depth.</p>
+    <p>The Transformer's move is to let every token look directly at every other token in one step. <strong>Self-attention</strong> computes, for each position, a weighted blend of all the others, where the weights say "how much should I care about you, given what I'm trying to represent?" There is no chain to walk. The path between any two tokens is length one.</p>
+
+    <p class="pull">Recurrence said "remember as you go." Attention said "look at everything, and learn what to look at."</p>
+
+    <h2>Why it actually mattered</h2>
+    <p>Two reasons, and the second is the one I think about most. First, it parallelises. Because positions are processed together rather than in sequence, you can use modern hardware more effectively, and the field did exactly that. Second, attention turned out to be a <em>general-purpose primitive</em>, not a translation trick. The same mechanism that aligned words across languages went on to model images, audio, protein structure, and code. A paper aimed at machine translation gave everyone a new default building block.</p>
+    <p>The positional encoding detail is easy to skim past but worth pausing on. If you process all tokens at once, you've thrown away order, so you have to put it back: the authors inject position through fixed sinusoids added to the embeddings. It's a necessary patch for a problem the architecture created, a reminder that every design choice trades something away.</p>
+
+    <h2>What it changed for me</h2>
+    <p>Coming from projects where I'd hand-engineer features and reach for gradient boosting, the Transformer changed how I think about <em>capacity</em>. The lesson isn't "attention is magic." It's that the right inductive bias, here "let the model decide what's relevant rather than baking relevance into the wiring," can scale in ways a more rigid design cannot. When I'm designing a pipeline now, I ask earlier whether I'm constraining the model for a good reason or out of habit.</p>
+  </div>
+
+  <div class="takeaways">
+    <h3>What I took away</h3>
+    <ul>
+      <li>Self-attention makes the path between any two tokens length one: long-range dependencies stop fading.</li>
+      <li>Dropping recurrence unlocked parallelism, which is most of why it scaled.</li>
+      <li>The real surprise was generality: one primitive, almost every modality.</li>
+      <li>Removing structure (order) forced an explicit fix (positional encodings). Design is always a trade.</li>
+    </ul>
+  </div>
+
+  <div class="post-nav">
+    <span></span>
+    <a href="an-image-is-worth-16x16-words.html"><span class="lbl">next note</span>An Image Is Worth 16×16 Words</a>
+  </div>
+</article>
+
+<footer><div class="wrap">
+  <div class="statusbar">
+    <div class="left"><span id="foot-name"></span><span id="foot-loc"></span></div>
+    <span>note · <a href="../papers.html">all notes</a></span>
+  </div>
+</div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/papers.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

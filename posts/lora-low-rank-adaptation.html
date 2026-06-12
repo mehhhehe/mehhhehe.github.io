@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoRA: Low-Rank Adaptation — Notes · Mehreen Mansoor</title>
+<meta name="description" content="Freeze a giant model's weights, learn a tiny low-rank update, and match full fine-tuning at a fraction of the cost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-base="../">
+<canvas id="neural"></canvas>
+
+<nav><div class="wrap nav-inner">
+  <a class="nav-logo" href="../index.html"><span class="tilde">~/</span>mehreen</a>
+  <div class="nav-links">
+    <a href="../index.html">home</a>
+    <a href="../work.html">work</a>
+    <a href="../papers.html" class="active">notes</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</div></nav>
+
+<article class="article">
+  <a class="back" href="../papers.html">back to notes</a>
+  <div class="art-head">
+    <div class="top"><span class="tag ml">ML</span><span class="readtime">6 min read</span></div>
+    <h1>LoRA: Low-Rank Adaptation of Large Language Models</h1>
+  </div>
+
+  <div class="paper-meta">
+    <div class="row"><span class="k">authors</span><span class="v">Edward Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, Weizhu Chen (Microsoft)</span></div>
+    <div class="row"><span class="k">venue</span><span class="v">ICLR 2022</span></div>
+    <div class="row"><span class="k">paper</span><span class="v"><a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener">arXiv:2106.09685 →</a></span></div>
+  </div>
+
+  <div class="prose">
+    <p>If <a href="language-models-few-shot-learners.html">GPT-3</a> showed how powerful giant models are, this paper answers the obvious follow-up for anyone without a data centre: how do you actually <em>adapt</em> one? It's a practical paper, not a new frontier, but a useful idea that makes the frontier accessible. The kind of thinking I apply when I build pipelines that have to run on real budgets.</p>
+
+    <h2>The problem with fine-tuning</h2>
+    <p>The default way to specialise a pre-trained model is full fine-tuning: keep training, update <em>every</em> weight. For a 175-billion-parameter model that's expensive. You need enough memory to hold and update all of it, and every task you adapt to produces a brand-new 175B-parameter copy to store and serve. Ten tasks, ten full copies. It doesn't scale, and for a student or a small team it's out of reach.</p>
+
+    <h2>The insight: updates are low-rank</h2>
+    <p>The authors start from a hypothesis: when you adapt a big model to a task, the <em>change</em> to the weights, call it ΔW, has low "intrinsic rank." The update is far simpler than the full weight matrix it's applied to. So why represent it as a full matrix at all? Instead, write ΔW as the product of two skinny matrices, <code>B·A</code>, where the shared inner dimension (the rank) is tiny. Freeze the original weights entirely; train only those two small matrices.</p>
+
+    <p class="pull">Don't relearn the model. Learn the small correction that points it at your task.</p>
+
+    <p>The numbers are the practical part. Against full fine-tuning of GPT-3, this cut the trainable parameters by up to <strong>ten thousand times</strong> and GPU memory by roughly three times, while matching and sometimes beating full fine-tuning on quality. And because the original weights are untouched, the learned update can be <em>merged in</em> at deployment, so there's no extra inference latency. Switching tasks means swapping a few-megabyte adapter instead of reloading a hundred-gigabyte model.</p>
+
+    <h2>What it changed for me</h2>
+    <p>Two things. First, it put adapting large models within reach of people like me. LoRA is why a student can specialise a serious model on a single GPU, and that accessibility is why I use it. Second, the deeper lesson: <strong>look for the low-dimensional structure hiding in a problem before you pay full price.</strong> The expensive object (a giant weight matrix) had a cheap update living inside it; the whole win came from noticing that and not over-parameterising the change. I now ask that question, "is the thing I'm learning secretly simpler than the thing I'm changing?", across my own work, well beyond language models.</p>
+  </div>
+
+  <div class="takeaways">
+    <h3>What I took away</h3>
+    <ul>
+      <li>Full fine-tuning of huge models is costly to train, store, and serve: a copy per task.</li>
+      <li>The weight <em>update</em> from adaptation is low-rank, so represent it as two small matrices.</li>
+      <li>Freeze the base, train the adapter: up to 10,000x fewer trainable params, no added inference latency.</li>
+      <li>The general move, find the low-dimensional structure before paying full price, travels far.</li>
+    </ul>
+  </div>
+
+  <div class="post-nav">
+    <a href="language-models-few-shot-learners.html"><span class="lbl">previous note</span>Language Models Are Few-Shot Learners</a>
+    <a href="grid-like-representations.html"><span class="lbl">next note</span>Grid-like Representations in Artificial Agents</a>
+  </div>
+</article>
+
+<footer><div class="wrap">
+  <div class="statusbar">
+    <div class="left"><span id="foot-name"></span><span id="foot-loc"></span></div>
+    <span>note · <a href="../papers.html">all notes</a></span>
+  </div>
+</div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/papers.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

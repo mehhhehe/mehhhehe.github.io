@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transformers & the Hippocampal Formation — Notes · Mehreen Mansoor</title>
+<meta name="description" content="Give a transformer the right position encoding and place cells and grid cells fall out of it: the brain's spatial code, reproduced by the architecture behind modern AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-base="../">
+<canvas id="neural"></canvas>
+
+<nav><div class="wrap nav-inner">
+  <a class="nav-logo" href="../index.html"><span class="tilde">~/</span>mehreen</a>
+  <div class="nav-links">
+    <a href="../index.html">home</a>
+    <a href="../work.html">work</a>
+    <a href="../papers.html" class="active">notes</a>
+    <a href="../index.html#contact">contact</a>
+  </div>
+</div></nav>
+
+<article class="article">
+  <a class="back" href="../papers.html">back to notes</a>
+  <div class="art-head">
+    <div class="top"><span class="tag neuro">Neuro</span><span class="readtime">7 min read</span></div>
+    <h1>Relating Transformers to Models and Neural Representations of the Hippocampal Formation</h1>
+  </div>
+
+  <div class="paper-meta">
+    <div class="row"><span class="k">authors</span><span class="v">James C. R. Whittington, Joseph Warren, Timothy E. J. Behrens</span></div>
+    <div class="row"><span class="k">venue</span><span class="v">ICLR 2022</span></div>
+    <div class="row"><span class="k">paper</span><span class="v"><a href="https://arxiv.org/abs/2112.04035" target="_blank" rel="noopener">arXiv:2112.04035 →</a></span></div>
+  </div>
+
+  <div class="prose">
+    <p>I put this one last because it closes a loop that runs through this whole notebook. We started with <a href="attention-is-all-you-need.html">the Transformer</a>, an architecture built by engineers, for machine translation, with no reference to biology. This paper shows that same architecture reproducing some of the best-characterized representations in neuroscience. The architecture we built to process language turns out to resemble what the brain uses to navigate space.</p>
+
+    <h2>The brain side</h2>
+    <p>The hippocampal formation is the brain's map-maker. Two of its most studied cell types: <strong>place cells</strong>, which fire when you're in a particular location, and <strong>grid cells</strong>, which fire on a regular triangular lattice across an entire space, the periodic coordinate system I wrote about in the <a href="grid-like-representations.html">grid-cells note</a>. Neuroscience has its own models of how these arise, built by hand to capture this spatial machinery.</p>
+
+    <h2>The bridge</h2>
+    <p>Whittington and colleagues show that a Transformer, given the right ingredient (<strong>recurrent position encodings</strong>), develops internal representations that match place cells and grid cells. Not loosely, but the precise spatial codes neuroscientists recognise. And it isn't a coincidence. The transformer's mechanism is mathematically close to existing hippocampal models from neuroscience; it's effectively a more general version of the same computation. Two communities, working from opposite ends (one optimizing translation, one reverse-engineering memory), arrived at the same computation.</p>
+
+    <p class="pull">The architecture built to handle language ended up reproducing the brain's code for space.</p>
+
+    <p>The traffic runs both ways. The transformer version doesn't just match the neuroscience model; it outperforms it, which makes it a useful scientific instrument, a sharper hypothesis about what the hippocampal-cortical system might be doing. The authors suggest the same style of computation could extend beyond space into relational, structured tasks that wider cortex handles: memory, inference, possibly language comprehension itself.</p>
+
+    <h2>Why this is where I stop</h2>
+    <p>Everything in these notes circles one idea: that minds and models, pushed toward similar problems, keep arriving at similar solutions, from <a href="grid-like-representations.html">grid cells emerging in trained agents</a>, to recognition networks predicting visual cortex, to the Transformer landing on the hippocampus's own representations. This paper states that convergence most directly, because it links the most important architecture in modern AI to the brain's spatial code. It's the intersection I want to work at: not "AI <em>or</em> neuroscience," but the place where each one becomes a tool for understanding the other.</p>
+  </div>
+
+  <div class="takeaways">
+    <h3>What I took away</h3>
+    <ul>
+      <li>Place cells and grid cells are the hippocampal formation's code for location and space.</li>
+      <li>A Transformer with recurrent position encodings reproduces those precise spatial representations.</li>
+      <li>It's not luck: the mechanism is closely related to existing neuroscience models, and outperforms them.</li>
+      <li>The most important architecture in modern AI doubles as a hypothesis about how the brain maps the world.</li>
+    </ul>
+  </div>
+
+  <div class="post-nav">
+    <a href="grid-like-representations.html"><span class="lbl">previous note</span>Grid-like Representations in Artificial Agents</a>
+    <a href="../papers.html"><span class="lbl">back to index</span>All notes</a>
+  </div>
+</article>
+
+<footer><div class="wrap">
+  <div class="statusbar">
+    <div class="left"><span id="foot-name"></span><span id="foot-loc"></span></div>
+    <span>note · <a href="../papers.html">all notes</a></span>
+  </div>
+</div></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/papers.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>
