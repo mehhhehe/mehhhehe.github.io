@@ -30,7 +30,7 @@ window.DATA = {
   // Animated counters in the hero. Use a number; decimals are fine.
   stats: [
     { value: 4.0, decimals: 1, label: "GPA / 4.0" },
-    { value: 8,   decimals: 0, label: "featured projects" },
+    { value: 7,   decimals: 0, label: "featured projects" },
     { value: 3,   decimals: 0, label: "internships & research roles" },
     { value: 6,   decimals: 0, label: "paper notes" }
   ],
@@ -88,7 +88,7 @@ window.DATA = {
   projects: [
     {
       name: "BP Oman Thesis: Drilling Decisions",
-      stack: "Python · Flask · PostgreSQL · GraphSAGE · GBDT · XGBoost",
+      stack: "Graph WaveNet · GraphSAGE · Python · Flask · PostgreSQL · XGBoost",
       desc: "Thesis project on drilling trip decisions. It models rock properties, ROP/MSE baselines, and the cost tradeoff between continuing and tripping.",
       link: "",
       status: "private repo"
@@ -131,12 +131,6 @@ window.DATA = {
       stack: "SARL · Java · Multi-Agent Systems",
       desc: "Sokoban solver in SARL/Java for a multi-agent systems course.",
       link: "https://github.com/mehhhehe/sarl-sokoban-game"
-    },
-    {
-      name: "FireBoost",
-      stack: "Python · Gradient Boosting",
-      desc: "Gradient boosting experiments in Python.",
-      link: "https://github.com/mehhhehe/FireBoost"
     },
     {
       name: "cognitus_lite_healthcare",
