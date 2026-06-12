@@ -30,7 +30,7 @@ window.DATA = {
   // Animated counters in the hero. Use a number; decimals are fine.
   stats: [
     { value: 4.0, decimals: 1, label: "GPA / 4.0" },
-    { value: 7,   decimals: 0, label: "featured projects" },
+    { source: "projects", decimals: 0, label: "featured projects" },
     { value: 3,   decimals: 0, label: "internships & research roles" },
     { value: 6,   decimals: 0, label: "paper notes" }
   ],

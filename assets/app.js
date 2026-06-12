@@ -174,9 +174,10 @@
       `<a class="btn" href="${base}work.html">see my work</a>`;
 
     // stats
-    if ($("#stats") && D.stats) $("#stats").innerHTML = D.stats.map((s) =>
-      `<div class="stat"><div class="n"><span class="accent" data-count="${s.value}" data-dec="${s.decimals || 0}">0</span></div><div class="l">${esc(s.label)}</div></div>`
-    ).join("");
+    if ($("#stats") && D.stats) $("#stats").innerHTML = D.stats.map((s) => {
+      const value = s.source === "projects" ? (D.projects || []).length : s.value;
+      return `<div class="stat"><div class="n"><span class="accent" data-count="${value}" data-dec="${s.decimals || 0}">0</span></div><div class="l">${esc(s.label)}</div></div>`;
+    }).join("");
 
     if ($("#about-text")) $("#about-text").innerHTML = D.about.map((p) => `<p>${esc(p)}</p>`).join("");
     if ($("#currently")) $("#currently").innerHTML = D.currently.map((c) => `<li>${esc(c)}</li>`).join("");
