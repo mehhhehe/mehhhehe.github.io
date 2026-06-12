@@ -17,7 +17,7 @@ window.PAPERS = [
     venue: "NeurIPS",
     year: 2017,
     blurb: "Introduces the Transformer architecture and self-attention for sequence modelling without recurrence.",
-    read: "6 min read"
+    read: "1-2 min read"
   },
   {
     slug: "an-image-is-worth-16x16-words",
@@ -27,7 +27,7 @@ window.PAPERS = [
     venue: "ICLR",
     year: 2021,
     blurb: "Applies a standard Transformer encoder to image patches and studies when this works better than convolutional models.",
-    read: "6 min read"
+    read: "1-2 min read"
   },
   {
     slug: "language-models-few-shot-learners",
@@ -37,7 +37,7 @@ window.PAPERS = [
     venue: "NeurIPS",
     year: 2020,
     blurb: "Introduces GPT-3 and shows how large language models can perform new tasks from examples in the prompt, without gradient updates.",
-    read: "7 min read"
+    read: "1-2 min read"
   },
   {
     slug: "lora-low-rank-adaptation",
@@ -47,7 +47,7 @@ window.PAPERS = [
     venue: "ICLR",
     year: 2022,
     blurb: "A parameter-efficient fine-tuning method that freezes the base model and learns small low-rank updates.",
-    read: "6 min read"
+    read: "1-2 min read"
   },
   {
     slug: "grid-like-representations",
@@ -57,7 +57,7 @@ window.PAPERS = [
     venue: "Nature",
     year: 2018,
     blurb: "Shows grid-like representations emerging in trained navigation agents.",
-    read: "6 min read"
+    read: "1-2 min read"
   },
   {
     slug: "transformers-hippocampal-formation",
@@ -67,6 +67,6 @@ window.PAPERS = [
     venue: "ICLR",
     year: 2022,
     blurb: "Relates Transformer representations to place cells, grid cells, and models of the hippocampal formation.",
-    read: "7 min read"
+    read: "1-2 min read"
   }
 ];
