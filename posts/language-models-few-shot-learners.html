@@ -37,7 +37,7 @@
   </div>
 
   <div class="prose">
-    <p>This is the GPT-3 paper, and it's the one that changed what "training" means to me. Up to this point, teaching a model a new task meant collecting a labelled dataset and running gradient descent on it. This paper showed a model doing something different: learning a task from a few examples typed into the prompt, with its weights frozen, mid-sentence.</p>
+    <p>This is the GPT-3 paper. It studies whether a large language model can perform new tasks from examples in the prompt, without updating its weights.</p>
 
     <h2>The setup</h2>
     <p>The authors scaled an autoregressive transformer to 175 billion parameters, over a hundred times bigger than its predecessor, and trained it on the straightforward objective of predicting the next token across a large slice of the internet. Nothing exotic in the recipe. The whole bet was on scale: more parameters, more data, more compute, same idea.</p>
@@ -50,7 +50,7 @@
     <p>What I appreciate is that the paper doesn't oversell. It documents where GPT-3 is weak: arithmetic with more digits, tasks needing real multi-step reasoning, places where it's fluent but wrong. Holding those two things together, a real result and a clear list of failures, is the kind of scientific honesty I want to follow.</p>
 
     <h2>What it changed for me</h2>
-    <p>Practically, it changed how I approach a new problem. The first question is no longer always "what dataset do I need to fine-tune on?" Sometimes it's "can I just <em>describe</em> the task well enough in the prompt?" That's a different, faster loop. The deeper shift is conceptual: scale can be a research direction, not just an engineering detail. Past some threshold, quantity produces new capability, and figuring out which abilities sit just past the next threshold is now one of the more relevant questions in the field.</p>
+    <p>The practical shift is that some tasks can be specified in the prompt instead of through a separate fine-tuning dataset. The broader point is about scale: increasing model size and data can produce new behaviours that are not obvious in smaller models.</p>
   </div>
 
   <div class="takeaways">

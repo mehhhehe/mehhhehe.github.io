@@ -45,11 +45,11 @@
     <p class="pull">A CNN assumes how images work. A transformer asks the data, if you give it enough data to ask.</p>
 
     <h2>The catch that makes it interesting</h2>
-    <p>Here's the part the paper doesn't hide: on mid-sized datasets like ImageNet alone, ViT actually <em>underperforms</em> a comparable ResNet. The convolution's built-in assumptions are genuinely helpful when data is scarce; they're a free head start. ViT has no such head start. It has to learn that locality matters from scratch. So when does it win? When you pre-train it on enormous datasets, tens of millions to hundreds of millions of images. Past that scale, ViT matches or beats the best CNNs, and uses fewer compute resources to get there.</p>
+    <p>On mid-sized datasets like ImageNet alone, ViT <em>underperforms</em> a comparable ResNet. Convolutions are still useful when data is limited because they encode locality from the start. ViT becomes competitive after pre-training on very large image datasets, where it can learn those relationships from data.</p>
     <p>That trade-off is the whole lesson: <strong>inductive bias and data are substitutes.</strong> A strong architectural prior buys you performance when data is limited; abundant data buys you the freedom to drop the prior and let the model discover the structure itself, often a better-fitting structure than the one you'd have imposed.</p>
 
     <h2>What it changed for me</h2>
-    <p>It made me check my own assumptions more carefully. When I reach for a model with strong built-in structure, I now ask whether I'm doing it because the structure is right or because I don't have enough data to go without. Those are different reasons. ViT also unified the field in a practical sense: once vision and language run on the same backbone, the multimodal models that followed become a more natural next step. The patch-as-token trick is one of those ideas that seems obvious only after someone tries it at scale.</p>
+    <p>The paper separates architecture from data scale. A model with fewer built-in assumptions can work well, but only when it has enough data. It also made multimodal models easier to reason about, because vision and language could share the same basic Transformer backbone.</p>
   </div>
 
   <div class="takeaways">

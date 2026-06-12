@@ -37,10 +37,10 @@
   </div>
 
   <div class="prose">
-    <p>This is the paper that convinced me brains and neural networks, given the same problem, can independently arrive at the same solution. It's also the bridge between the two halves of these notes: the architectures I build with, and the brains they keep echoing.</p>
+    <p>This paper studies whether artificial agents trained for navigation can develop representations similar to grid cells in the brain.</p>
 
     <h2>A detour through the brain</h2>
-    <p>In the mammalian entorhinal cortex there are <strong>grid cells</strong>: neurons that fire whenever an animal is at any vertex of a regular triangular grid tiling the floor of a room. Different cells use grids of different spacing and offset. Together they form a periodic coordinate system for space, the brain's built-in metric for "where am I, and how do I get from here to there?" The discovery won a Nobel Prize. The open question was <em>why</em> this particular code, and whether it was a quirk of biology or something deeper.</p>
+    <p>In the mammalian entorhinal cortex there are <strong>grid cells</strong>: neurons that fire when an animal is at points on a regular triangular grid. Different cells use grids of different spacing and offset. Together they form a coordinate system for space. The discovery won a Nobel Prize; this paper asks whether a similar code can emerge from training.</p>
 
     <h2>The experiment</h2>
     <p>The DeepMind team trained a recurrent network on a simple task: <strong>path integration</strong>. Given a stream of self-motion signals, which way am I moving, how fast, keep track of your position. No grids were designed in, no biology was hard-coded. They simply asked the network to know where it was from its own movement.</p>
@@ -48,10 +48,10 @@
 
     <p class="pull">Nobody put grid cells in. The task put them there.</p>
 
-    <p>And it wasn't just an internal pattern. When this grid-equipped network was dropped into a reinforcement-learning agent navigating unfamiliar environments, it could do <em>vector-based navigation</em>, take shortcuts, head straight toward goals, and it outperformed agents without that representation, even besting expert human players in their setups. The emergent structure was functionally useful, consistent with what the neuroscience theory predicted.</p>
+    <p>The representation was not only an internal pattern. When used inside a reinforcement-learning agent, it supported <em>vector-based navigation</em>: taking shortcuts and moving directly toward goals in unfamiliar environments.</p>
 
     <h2>What it changed for me</h2>
-    <p>It changed what "learned representations" means to me. We often treat a network's internal features as an inscrutable means to an end. This says: sometimes the optimal internal representation for a task is a real, nameable thing, one evolution already found. That's a strong hint that some representations are <em>natural solutions</em> to problems, not arbitrary artifacts of training. It makes me more curious about what's inside my models, and more inclined to think interpretability can find real structure rather than just noise.</p>
+    <p>The result is a useful example of learned representations becoming interpretable. The agent was not given grid cells, but training produced a structure that resembles one already studied in neuroscience.</p>
   </div>
 
   <div class="takeaways">

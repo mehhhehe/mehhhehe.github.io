@@ -16,7 +16,7 @@ window.PAPERS = [
     authors: "Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, Polosukhin",
     venue: "NeurIPS",
     year: 2017,
-    blurb: "The paper that removed recurrence. Self-attention turned out to be a general-purpose primitive, and most of what I work with today traces back to it.",
+    blurb: "Introduces the Transformer architecture and self-attention for sequence modelling without recurrence.",
     read: "6 min read"
   },
   {
@@ -26,7 +26,7 @@ window.PAPERS = [
     authors: "Dosovitskiy, Beyer, Kolesnikov, Weissenborn, Zhai, Unterthiner, et al.",
     venue: "ICLR",
     year: 2021,
-    blurb: "Cut an image into patches, treat them like words, skip the convolutions. At sufficient scale, a plain transformer outperforms the CNNs vision relied on for a decade.",
+    blurb: "Applies a standard Transformer encoder to image patches and studies when this works better than convolutional models.",
     read: "6 min read"
   },
   {
@@ -36,7 +36,7 @@ window.PAPERS = [
     authors: "Brown, Mann, Ryder, Subbiah, Kaplan, Dhariwal, et al. (OpenAI)",
     venue: "NeurIPS",
     year: 2020,
-    blurb: "GPT-3. Scale a language model far enough and it learns tasks from a few examples in the prompt, no gradient updates. Scale as a research direction, not just an engineering detail.",
+    blurb: "Introduces GPT-3 and shows how large language models can perform new tasks from examples in the prompt, without gradient updates.",
     read: "7 min read"
   },
   {
@@ -46,7 +46,7 @@ window.PAPERS = [
     authors: "Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, Chen (Microsoft)",
     venue: "ICLR",
     year: 2022,
-    blurb: "You can't fine-tune a 175B model on your laptop, but you might not need to. Freeze the weights, learn a tiny low-rank update, and match full fine-tuning at a fraction of the cost. A practical paper.",
+    blurb: "A parameter-efficient fine-tuning method that freezes the base model and learns small low-rank updates.",
     read: "6 min read"
   },
   {
@@ -56,7 +56,7 @@ window.PAPERS = [
     authors: "Banino et al. (DeepMind)",
     venue: "Nature",
     year: 2018,
-    blurb: "Train a network to self-localize and grid cells appear on their own, the same hexagonal code the brain uses to navigate. Convergence between cortex and code.",
+    blurb: "Shows grid-like representations emerging in trained navigation agents.",
     read: "6 min read"
   },
   {
@@ -66,7 +66,7 @@ window.PAPERS = [
     authors: "Whittington, Warren, Behrens",
     venue: "ICLR",
     year: 2022,
-    blurb: "Give a transformer the right position encoding and place cells and grid cells fall out of it: the brain's spatial code, reproduced by the architecture from paper #1.",
+    blurb: "Relates Transformer representations to place cells, grid cells, and models of the hippocampal formation.",
     read: "7 min read"
   }
 ];

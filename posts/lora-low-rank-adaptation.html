@@ -37,7 +37,7 @@
   </div>
 
   <div class="prose">
-    <p>If <a href="language-models-few-shot-learners.html">GPT-3</a> showed how powerful giant models are, this paper answers the obvious follow-up for anyone without a data centre: how do you actually <em>adapt</em> one? It's a practical paper, not a new frontier, but a useful idea that makes the frontier accessible. The kind of thinking I apply when I build pipelines that have to run on real budgets.</p>
+    <p>If <a href="language-models-few-shot-learners.html">GPT-3</a> showed the value of large models, LoRA focuses on a practical question: how can a model be adapted without updating all of its weights?</p>
 
     <h2>The problem with fine-tuning</h2>
     <p>The default way to specialise a pre-trained model is full fine-tuning: keep training, update <em>every</em> weight. For a 175-billion-parameter model that's expensive. You need enough memory to hold and update all of it, and every task you adapt to produces a brand-new 175B-parameter copy to store and serve. Ten tasks, ten full copies. It doesn't scale, and for a student or a small team it's out of reach.</p>
@@ -47,7 +47,7 @@
 
     <p class="pull">Don't relearn the model. Learn the small correction that points it at your task.</p>
 
-    <p>The numbers are the practical part. Against full fine-tuning of GPT-3, this cut the trainable parameters by up to <strong>ten thousand times</strong> and GPU memory by roughly three times, while matching and sometimes beating full fine-tuning on quality. And because the original weights are untouched, the learned update can be <em>merged in</em> at deployment, so there's no extra inference latency. Switching tasks means swapping a few-megabyte adapter instead of reloading a hundred-gigabyte model.</p>
+    <p>Compared with full fine-tuning of GPT-3, LoRA reduces trainable parameters by up to <strong>ten thousand times</strong> and GPU memory by roughly three times, while matching or beating full fine-tuning on several tasks. The learned update can also be <em>merged in</em> for inference, so it does not add latency.</p>
 
     <h2>What it changed for me</h2>
     <p>Two things. First, it put adapting large models within reach of people like me. LoRA is why a student can specialise a serious model on a single GPU, and that accessibility is why I use it. Second, the deeper lesson: <strong>look for the low-dimensional structure hiding in a problem before you pay full price.</strong> The expensive object (a giant weight matrix) had a cheap update living inside it; the whole win came from noticing that and not over-parameterising the change. I now ask that question, "is the thing I'm learning secretly simpler than the thing I'm changing?", across my own work, well beyond language models.</p>

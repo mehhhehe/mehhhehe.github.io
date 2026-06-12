@@ -45,12 +45,12 @@
 
     <p class="pull">Recurrence said "remember as you go." Attention said "look at everything, and learn what to look at."</p>
 
-    <h2>Why it actually mattered</h2>
-    <p>Two reasons, and the second is the one I think about most. First, it parallelises. Because positions are processed together rather than in sequence, you can use modern hardware more effectively, and the field did exactly that. Second, attention turned out to be a <em>general-purpose primitive</em>, not a translation trick. The same mechanism that aligned words across languages went on to model images, audio, protein structure, and code. A paper aimed at machine translation gave everyone a new default building block.</p>
+    <h2>Why it mattered</h2>
+    <p>Two reasons stand out. First, it parallelises. Because positions are processed together rather than in sequence, the model can use modern hardware more effectively. Second, attention turned out to be useful beyond translation. The same mechanism later appeared in models for images, audio, protein structure, and code.</p>
     <p>The positional encoding detail is easy to skim past but worth pausing on. If you process all tokens at once, you've thrown away order, so you have to put it back: the authors inject position through fixed sinusoids added to the embeddings. It's a necessary patch for a problem the architecture created, a reminder that every design choice trades something away.</p>
 
     <h2>What it changed for me</h2>
-    <p>Coming from projects where I'd hand-engineer features and reach for gradient boosting, the Transformer changed how I think about <em>capacity</em>. The lesson isn't "attention is magic." It's that the right inductive bias, here "let the model decide what's relevant rather than baking relevance into the wiring," can scale in ways a more rigid design cannot. When I'm designing a pipeline now, I ask earlier whether I'm constraining the model for a good reason or out of habit.</p>
+    <p>The main lesson for me is that the right inductive bias can scale well: let the model decide which tokens are relevant, instead of fixing that structure by hand.</p>
   </div>
 
   <div class="takeaways">

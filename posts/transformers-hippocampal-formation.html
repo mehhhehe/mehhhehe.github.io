@@ -37,17 +37,17 @@
   </div>
 
   <div class="prose">
-    <p>I put this one last because it closes a loop that runs through this whole notebook. We started with <a href="attention-is-all-you-need.html">the Transformer</a>, an architecture built by engineers, for machine translation, with no reference to biology. This paper shows that same architecture reproducing some of the best-characterized representations in neuroscience. The architecture we built to process language turns out to resemble what the brain uses to navigate space.</p>
+    <p>This paper connects <a href="attention-is-all-you-need.html">Transformers</a> with representations studied in the hippocampal formation. It asks why a model originally developed for sequence modelling can reproduce place-cell and grid-cell-like structure.</p>
 
     <h2>The brain side</h2>
     <p>The hippocampal formation is the brain's map-maker. Two of its most studied cell types: <strong>place cells</strong>, which fire when you're in a particular location, and <strong>grid cells</strong>, which fire on a regular triangular lattice across an entire space, the periodic coordinate system I wrote about in the <a href="grid-like-representations.html">grid-cells note</a>. Neuroscience has its own models of how these arise, built by hand to capture this spatial machinery.</p>
 
-    <h2>The bridge</h2>
+    <h2>The link</h2>
     <p>Whittington and colleagues show that a Transformer, given the right ingredient (<strong>recurrent position encodings</strong>), develops internal representations that match place cells and grid cells. Not loosely, but the precise spatial codes neuroscientists recognise. And it isn't a coincidence. The transformer's mechanism is mathematically close to existing hippocampal models from neuroscience; it's effectively a more general version of the same computation. Two communities, working from opposite ends (one optimizing translation, one reverse-engineering memory), arrived at the same computation.</p>
 
-    <p class="pull">The architecture built to handle language ended up reproducing the brain's code for space.</p>
+    <p class="pull">With the right positional structure, Transformer models can reproduce spatial representations similar to place cells and grid cells.</p>
 
-    <p>The traffic runs both ways. The transformer version doesn't just match the neuroscience model; it outperforms it, which makes it a useful scientific instrument, a sharper hypothesis about what the hippocampal-cortical system might be doing. The authors suggest the same style of computation could extend beyond space into relational, structured tasks that wider cortex handles: memory, inference, possibly language comprehension itself.</p>
+    <p>The Transformer version does not only match the neuroscience model; in the experiments, it performs better. The authors argue that similar computations may also matter for relational and structured tasks beyond navigation, including memory and inference.</p>
 
     <h2>Why this is where I stop</h2>
     <p>Everything in these notes circles one idea: that minds and models, pushed toward similar problems, keep arriving at similar solutions, from <a href="grid-like-representations.html">grid cells emerging in trained agents</a>, to recognition networks predicting visual cortex, to the Transformer landing on the hippocampus's own representations. This paper states that convergence most directly, because it links the most important architecture in modern AI to the brain's spatial code. It's the intersection I want to work at: not "AI <em>or</em> neuroscience," but the place where each one becomes a tool for understanding the other.</p>
